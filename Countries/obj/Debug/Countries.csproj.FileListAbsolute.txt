@@ -26,3 +26,17 @@ C:\Users\jerom\OneDrive\Documents\ECE\ING4\Second semester\C#\CSharp-WPF-2020011
 C:\Users\jerom\OneDrive\Documents\ECE\ING4\Second semester\C#\CSharp-WPF-20200113\Countries\obj\Debug\Countries.csproj.GenerateResource.cache
 C:\Users\jerom\OneDrive\Documents\ECE\ING4\Second semester\C#\CSharp-WPF-20200113\Countries\obj\Debug\Countries.exe
 C:\Users\jerom\OneDrive\Documents\ECE\ING4\Second semester\C#\CSharp-WPF-20200113\Countries\obj\Debug\Countries.pdb
+C:\Users\Pierre\Desktop\ECE_ING_4\C#\Final Project\ECE_ING4_CSHARP\Countries\bin\Debug\Countries.exe.config
+C:\Users\Pierre\Desktop\ECE_ING_4\C#\Final Project\ECE_ING4_CSHARP\Countries\bin\Debug\Countries.exe
+C:\Users\Pierre\Desktop\ECE_ING_4\C#\Final Project\ECE_ING4_CSHARP\Countries\bin\Debug\Countries.pdb
+C:\Users\Pierre\Desktop\ECE_ING_4\C#\Final Project\ECE_ING4_CSHARP\Countries\obj\Debug\Countries.csprojAssemblyReference.cache
+C:\Users\Pierre\Desktop\ECE_ING_4\C#\Final Project\ECE_ING4_CSHARP\Countries\obj\Debug\MainWindow.g.cs
+C:\Users\Pierre\Desktop\ECE_ING_4\C#\Final Project\ECE_ING4_CSHARP\Countries\obj\Debug\App.g.cs
+C:\Users\Pierre\Desktop\ECE_ING_4\C#\Final Project\ECE_ING4_CSHARP\Countries\obj\Debug\Countries_MarkupCompile.cache
+C:\Users\Pierre\Desktop\ECE_ING_4\C#\Final Project\ECE_ING4_CSHARP\Countries\obj\Debug\Countries_MarkupCompile.lref
+C:\Users\Pierre\Desktop\ECE_ING_4\C#\Final Project\ECE_ING4_CSHARP\Countries\obj\Debug\MainWindow.baml
+C:\Users\Pierre\Desktop\ECE_ING_4\C#\Final Project\ECE_ING4_CSHARP\Countries\obj\Debug\Countries.g.resources
+C:\Users\Pierre\Desktop\ECE_ING_4\C#\Final Project\ECE_ING4_CSHARP\Countries\obj\Debug\Countries.Properties.Resources.resources
+C:\Users\Pierre\Desktop\ECE_ING_4\C#\Final Project\ECE_ING4_CSHARP\Countries\obj\Debug\Countries.csproj.GenerateResource.cache
+C:\Users\Pierre\Desktop\ECE_ING_4\C#\Final Project\ECE_ING4_CSHARP\Countries\obj\Debug\Countries.exe
+C:\Users\Pierre\Desktop\ECE_ING_4\C#\Final Project\ECE_ING4_CSHARP\Countries\obj\Debug\Countries.pdb
