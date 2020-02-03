@@ -1,0 +1,15 @@
+﻿<Window x:Class="Countries.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Countries"
+        mc:Ignorable="d"
+        Title="Countries and capital cities" Height="450" Width="800">
+    <Grid>
+        <Image Source="Images/image1.jpg"  Height="Auto" Margin="648,47,0,278"/>
+        <TextBox Text="{Binding MyValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="28,29,617.6,352" />
+        <ComboBox Name="CB" ItemsSource="{Binding Path=Collection}" Height="25" DisplayMemberPath="Name" SelectedItem="Path SelectedCountry" SelectionChanged="ComboBox_Selected" Margin="28,101,617.6,294" RenderTransformOrigin="1.171,0.46" />
+        <TextBox HorizontalAlignment="Left" Margin="28,156,0,0" Text="{Binding ROBI, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="72" Width="148"/>
+</Grid>
+</Window>
