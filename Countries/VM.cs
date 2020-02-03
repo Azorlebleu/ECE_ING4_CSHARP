@@ -7,18 +7,18 @@ namespace Countries
 {
 
 
-    /*class POKEMON
+    class POKEMON
     {
         //
-        
+        /*
          * innotify..changed..., binding, observableCollection <pokemon>
          * class
          
-
+*/
         public string Name { get; set; }
 
         public POKEMON (string n) { Name = n;}
-    }*/
+    }
 
     class COUNTRY
     {
