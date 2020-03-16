@@ -4,17 +4,25 @@
 winexe
 C#
 .cs
-C:\Users\jerom\OneDrive\Documents\ECE\ING4\Second semester\C#\Nouveau dossier\ECE_ING4_CSHARP\Countries\obj\Debug\
+<<<<<<< HEAD
+C:\Users\sonbi\OneDrive\Documents\cours\projetfinal\projectc#\ECE_ING4_CSHARP\Countries\obj\Debug\
+=======
+C:\Users\Pierre\Desktop\ECE_ING_4\C#\Final Project\ECE_ING4_CSHARP\Countries\obj\Debug\
+>>>>>>> 61f818362aece2c184d70c131707e209b742f0ca
 Countries
 none
 false
 DEBUG;TRACE
-C:\Users\jerom\OneDrive\Documents\ECE\ING4\Second semester\C#\Nouveau dossier\ECE_ING4_CSHARP\Countries\App.xaml
+<<<<<<< HEAD
+C:\Users\sonbi\OneDrive\Documents\cours\projetfinal\projectc#\ECE_ING4_CSHARP\Countries\App.xaml
+=======
+C:\Users\Pierre\Desktop\ECE_ING_4\C#\Final Project\ECE_ING4_CSHARP\Countries\App.xaml
+>>>>>>> 61f818362aece2c184d70c131707e209b742f0ca
 11151548125
 
 8768655264
 131569487696
 MainWindow.xaml;
 
-True
+False
 

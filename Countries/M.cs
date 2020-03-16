@@ -7,7 +7,7 @@ namespace Countries
         public Dictionary<string, string> GetCountries()
         {
             Dictionary<string, string> dict = new Dictionary<string, string>();
-            dict.Add("Albania", "Tirana");
+            dict.Add("bulbasaur","pokemon de qualité");
             dict.Add("Belgium", "Brussels");
             dict.Add("Bosnia and Herzegovina", "Sarajevo");
             dict.Add("Bulgaria", "Sofia");

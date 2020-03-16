@@ -5,11 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Countries"
         mc:Ignorable="d"
-        Title="Countries and capital cities" Height="450" Width="800">
+        Title="Pokedex" Height="450" Width="800">
     <Grid>
-        <Image Source="Images/image1.jpg"  Height="Auto" Margin="648,47,0,278"/>
-        <TextBox Text="{Binding MyValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="28,29,617.6,352" />
-        <ComboBox Name="CB" ItemsSource="{Binding Path=Collection}" Height="25" DisplayMemberPath="Name" SelectedItem="Path SelectedCountry" SelectionChanged="ComboBox_Selected" Margin="28,101,617.6,294" RenderTransformOrigin="1.171,0.46" />
-        <TextBox HorizontalAlignment="Left" Margin="28,156,0,0" Text="{Binding ROBI, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="72" Width="148"/>
-</Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="47*"/>
+            <ColumnDefinition Width="151*"/>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer>
+            <StackPanel>
+                <ItemsControl>
+                    observable collection --> tous les pok qu'on va binder  dans itemsource
+
+                    <Button Content="pokemon1" Width="169"/>
+                    <Button Content="pokemon2" Width="169"/>
+                </ItemsControl>
+            </StackPanel>
+        </ScrollViewer>
+        <Image Source="Images/image1.jpg"  Height="Auto" Margin="0,-38,-32,-31" Grid.Column="1"/>
+        <!--<TextBox Text="{Binding MyValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="428,42,29,339" Grid.Column="1" TextChanged="TextBox_TextChanged" />-->
+        <ComboBox Name="CB" ItemsSource="{Binding Path=Collection}" Height="25" DisplayMemberPath="Name" SelectedItem="Path SelectedCountry" SelectionChanged="ComboBox_Selected" Margin="428,103,30,291" RenderTransformOrigin="1.171,0.46" Grid.Column="1" />
+        <!--<TextBox  HorizontalAlignment="Left" Margin="426,155,0,0" Text="{Binding ROBI, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="72" Width="148" Grid.Column="1" TextChanged="textBlock1_TextChanged"/>-->
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="426,246,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="59" Width="148" Grid.Column="1" />
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="73,271,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="83" Width="171" FontFamily="Pokemon"/>
+    </Grid>
 </Window>
