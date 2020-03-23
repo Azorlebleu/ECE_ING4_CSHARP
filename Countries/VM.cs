@@ -16,8 +16,9 @@ namespace Countries
          
 */
         public string Name { get; set; }
+        public int Id{ get; set; }
 
-        public POKEMON (string n) { Name = n;}
+        public POKEMON (int id, string n) { Id = id; Name = n;}
     }
 
     class COUNTRY
@@ -35,22 +36,22 @@ namespace Countries
             ROBI = "1";
             M model = new M();
 
-            
+          /*  
             collection1 = new ObservableCollection<COUNTRY>();
-            foreach(KeyValuePair<string, string> a in model.GetCountries())
+            foreach(KeyValuePair<int, string> a in model.GetCountries())
             {
                 COUNTRY c = new COUNTRY(a.Key, a.Value);
                 collection1.Add(c);
-            }
+            }*/
 
 
 
-            /*collectionPokemon = new ObservableCollection<POKEMON>();
-            foreach (KeyValuePair<string> a in model.GetPokemon())
+            collection_pokemons = new ObservableCollection<POKEMON>();
+            foreach (KeyValuePair<int, string> a in model.GetPokemons())
             {
                 POKEMON p = new POKEMON(a.Key, a.Value);
-                collectionPokemon.Add(c);
-            }*/
+                collection_pokemons.Add(p);
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -97,11 +98,11 @@ namespace Countries
             }
         }
 
-        private ObservableCollection<COUNTRY> collection1;
-        public ObservableCollection<COUNTRY> Collection
+        private ObservableCollection<POKEMON> collection_pokemons;
+        public ObservableCollection<POKEMON> Collection
         {
-            get { return this.collection1; }
-            set { this.collection1 = value; }
+            get { return this.collection_pokemons; }
+            set { this.collection_pokemons = value; }
         }
 
 

@@ -1,4 +1,8 @@
-﻿using System.Windows;
+﻿using countries;
+using System.Threading.Tasks;
+using System.Windows;
+
+
 
 namespace Countries
 {
@@ -13,17 +17,21 @@ namespace Countries
             this.DataContext = new VM();
         }
 
-        private void ComboBox_Selected(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private async void ComboBox_Selected(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            COUNTRY c = (COUNTRY)CB.SelectedItem;
-            MessageBox.Show(c.CapitalCity);
-            textBlock1.Text = "Name : " + c.CapitalCity;
-        }
+           
+        
+            POKEMON c = (POKEMON)CB.SelectedItem;
+            //MessageBox.Show(c.CapitalCity);
 
-        /*private void ComboBox_Selected(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-       {
+            Task<Pokemon> task = Task.Run(() =>
+            GetDataPokemons.GetPokemonAsync(73));
+            Pokemon returnValue = await task;
 
+            textBlock1.Text = "Name : " + returnValue.history;
         }
+        
+        /*
 
         private void ComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {

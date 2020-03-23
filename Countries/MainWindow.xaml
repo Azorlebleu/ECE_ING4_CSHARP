@@ -11,16 +11,28 @@
             <ColumnDefinition Width="47*"/>
             <ColumnDefinition Width="151*"/>
         </Grid.ColumnDefinitions>
+        <!--
         <ScrollViewer>
-            <StackPanel>
-                <ItemsControl>
-                    observable collection --> tous les pok qu'on va binder  dans itemsource
+            <ListView Name="myPokemonList">
+                <ListView.ItemTemplate   ItemsSource="{Binding Path=Collection}" DisplayMemberPath="Name">
+                    <DataTemplate>
+                        <WrapPanel>
+                            <Button Content="{Binding Name}" Width="169"/>
+                            <TextBlock Text="{Binding Name}" FontWeight="Bold" />
+                            <TextBlock Text=", " />
+                        </WrapPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+      
+-->
 
-                    <Button Content="pokemon1" Width="169"/>
-                    <Button Content="pokemon2" Width="169"/>
-                </ItemsControl>
-            </StackPanel>
-        </ScrollViewer>
+                <!--observable collection  tous les pok qu'on va binder  dans itemsource-->
+
+                    <!--<Button Content="pokemon1" Width="169"/> -->
+                    <!--<Button Content="pokemon2" Width="169"/> -->
+        <!--
+            </ListView>
+        </ScrollViewer> -->
         <Image Source="Images/image1.jpg"  Height="Auto" Margin="0,-38,-32,-31" Grid.Column="1"/>
         <!--<TextBox Text="{Binding MyValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="428,42,29,339" Grid.Column="1" TextChanged="TextBox_TextChanged" />-->
         <ComboBox Name="CB" ItemsSource="{Binding Path=Collection}" Height="25" DisplayMemberPath="Name" SelectedItem="Path SelectedCountry" SelectionChanged="ComboBox_Selected" Margin="428,103,30,291" RenderTransformOrigin="1.171,0.46" Grid.Column="1" />
