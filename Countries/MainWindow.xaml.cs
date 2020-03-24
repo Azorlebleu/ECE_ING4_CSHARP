@@ -2,6 +2,7 @@
 using System;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -22,113 +23,122 @@ namespace Countries
         public static System.Windows.Media.Color typeColor { get; set; }
         public static System.Windows.Media.Color typeColor2 { get; set; }
 
-
-        public static System.Windows.Media.Color GetColourForType(String type)
+        public string type_traduction;
+        public System.Windows.Media.Color GetColourForType(String type)
         {
-                    
             switch (type)
             {
                 case "normal":
+                    type_traduction = "Normal";
                     return (typeColor = Colors.Silver);
-                case "fight":
+                case "fighting":
+                    type_traduction = "Combat";
                     return (typeColor = Colors.Firebrick);
                 case "flying":
+                    type_traduction = "Vol";
                     return (typeColor = Colors.MediumOrchid);  
                 case "poison":
+                    type_traduction = "Poison";
                     return (typeColor = Colors.DarkViolet);   
                 case "ground":
+                    type_traduction = "Sol";
                     return (typeColor = Colors.LightGoldenrodYellow);   
                 case "rock":
+                    type_traduction = "Roche";
                     return (typeColor = Colors.SandyBrown);   
                 case "bug":
+                    type_traduction = "Insecte";
                     return (typeColor = Colors.YellowGreen);
                 case "ghost":
+                    type_traduction = "Spectre";
                     return (typeColor = Colors.DarkMagenta);  
                 case "fire":
+                    type_traduction = "Feu";
                     return (typeColor = Colors.Orange);
                 case "water":
+                    type_traduction = "Eau";
                     return (typeColor = Colors.DeepSkyBlue);
                 case "grass":
+                    type_traduction = "Plante";
                     return (typeColor = Colors.LimeGreen);
-                case "electrik":
+                case "electric":
+                    type_traduction = "Électrique";
                     return (typeColor = Colors.Yellow);
-                case "psych":
+                case "psychic":
+                    type_traduction = "Psy";
                     return (typeColor = Colors.HotPink);
                 case "ice":
+                    type_traduction = "Glace";
                     return (typeColor = Colors.PowderBlue); 
                 case "dragon":
+                    type_traduction = "Dragon";
                     return (typeColor = Colors.DarkOrchid);
+                case "fairy":
+                    type_traduction = "Fée";
+                    return (typeColor = Colors.MistyRose);
+                default:
+                    return (typeColor = Colors.White);
             }
-            return (typeColor = Colors.White);
+            
         }
-
-        private async void ComboBox_Selected(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-           
         
-            POKEMON c = (POKEMON)CB.SelectedItem;
+
+        private async void update_UI(object sender, RoutedEventArgs e)
+        {
+
+            int pokemon_id = (int)((Button)sender).Tag;
+           
+
+            //Appelle l'API pour prendre les données du pokémon sélectionné
 
             Task<Pokemon> task = Task.Run(() =>
-            GetDataPokemons.GetPokemonAsync(3));
+            GetDataPokemons.GetPokemonAsync(pokemon_id));
             Pokemon returnValue = await task;
-
-            textBlockName.Text = "Nom : " + returnValue.name;
-            textBlockGeneration.Text = "Génération : " + returnValue.genera;
-            textBlockHistoire.Text = "Histoire : " + returnValue.history;
-            textBlockType1.Text = "Type : " + returnValue.type1;
-            textBlockType2.Text = "\t" + returnValue.type2;
 
             LinearGradientBrush linear = new LinearGradientBrush();
             
-            linear.StartPoint = new Point(0, 0);
-            linear.EndPoint = new Point(1, 1);
-
-           
-            //linear.GradientStops.Add(new GradientStop() { Color = Colors.Blue, Offset = 0.75 });
-            //linear.GradientStops.Add(new GradientStop() { Color = Colors.Green, Offset = 1.0 });
-            //return new SolidColorBrush(Colors.Black);
-            mainGrid.Background = linear;
-            typeColor = GetColourForType(returnValue.type1);
-
-            linear.GradientStops.Add(new GradientStop() { Color = typeColor, Offset = 0.0 });
-            if (returnValue.type2 != null)
-            {
-                typeColor2 = GetColourForType(returnValue.type2);
-                linear.GradientStops.Add(new GradientStop() { Color = typeColor2, Offset = 0.50 });
-            }
-            linear.GradientStops.Add(new GradientStop() { Color = Colors.White, Offset = 1 });
+            //Fait appel aux images du Pokémon sélectionné
             image1.Source = new BitmapImage(new System.Uri(returnValue.sprite_front));
             image1s.Source = new BitmapImage(new System.Uri(returnValue.sprite_back));
             image2.Source = new BitmapImage(new System.Uri(returnValue.sprite_front_shiney));
             image2s.Source = new BitmapImage(new System.Uri(returnValue.sprite_back_shiney));
-        }
-        
-        /*
 
-        private void ComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+            //Affiche les informations qui ne nécessitent pas de traitement particulier
+            textBlockName.Text = returnValue.name;
+            textBlockGeneration.Text = returnValue.genera;
+            textBlockHistoire.Text = returnValue.history;
+
+
+            //Affiche le(s) type(s) du pokémon et fait changer le fond d'écran en conséquence
+            typeColor = GetColourForType(returnValue.type1);
+            textBlockType1.Text = this.type_traduction;
+            linear.GradientStops.Add(new GradientStop() { Color = typeColor, Offset = 0.3 });
+            Type1.Background = new SolidColorBrush(typeColor);
+            Type1.BorderBrush = new SolidColorBrush(typeColor);
+            //On vérifie si le pokémon a un deuxième type (pas toujous le cas)
+            if (returnValue.type2 != null)
+            {
+                typeColor2 = GetColourForType(returnValue.type2);
+                textBlockType2.Text = this.type_traduction;
+                linear.GradientStops.Add(new GradientStop() { Color = typeColor2, Offset = 0.75 });
+            }
+            else
+            {
+                textBlockType2.Text = "";
+            }
+
+
+            //Ajoute différents éléments constants au fond d'écran
+            linear.GradientStops.Add(new GradientStop() { Color = Colors.White, Offset = 1 });
+            linear.StartPoint = new Point(0, 0);
+            linear.EndPoint = new Point(1, 1);
+            mainGrid.Background = linear; //Monte le fond d'écran créé sur l'application
+        }
+
+        private void myPokemonList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
 
-        private void comboBox_SelectionChanged_1(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void ListView_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void TextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
-        {
-
-        }
-
-        private void textBlock1_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
-        {
-
-        }
-        */
     }
 }

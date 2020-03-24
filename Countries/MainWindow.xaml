@@ -6,44 +6,139 @@
         xmlns:local="clr-namespace:Countries"
         mc:Ignorable="d"
         Title="Pokedex" Height="450" Width="800">
+    <Window.Resources>
+        <SolidColorBrush x:Key="Transparent" Opacity="0.4" Color="Black"/>
+    </Window.Resources>
     <Grid x:Name="mainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="47*"/>
             <ColumnDefinition Width="151*"/>
         </Grid.ColumnDefinitions>
-        <!--
-        <ScrollViewer>
-            <ListView Name="myPokemonList">
-                <ListView.ItemTemplate   ItemsSource="{Binding Path=Collection}" DisplayMemberPath="Name">
-                    <DataTemplate>
-                        <WrapPanel>
-                            <Button Content="{Binding Name}" Width="169"/>
-                            <TextBlock Text="{Binding Name}" FontWeight="Bold" />
-                            <TextBlock Text=", " />
-                        </WrapPanel>
+
+        <ScrollViewer Padding="0" Margin="0,0,28,0"
+                      Width="160"  
+                      Name="scrollViewer1"  
+                      BorderBrush="AntiqueWhite">
+            <ListView Padding="0" Margin="0" Width="160" Name="myPokemonList"  Background="Black" ItemsSource="{Binding Path=Collection}" SelectedItem="Path SelectedCountry" SelectionChanged="myPokemonList_SelectionChanged" >
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Padding" Value="0"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="Margin" Value="0"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+
+                <ListView.ItemTemplate >
+                    <DataTemplate 
+                        >
+                        <Border
+                            BorderBrush="White"
+                            BorderThickness="0,0,0,1"
+                            Padding="0"
+                            Margin="0" >
+                            <Button BorderThickness="0"
+                                    Content="{Binding Name}" 
+                                    Foreground="White"
+                                    Background="Black" 
+                                    Tag="{Binding Id}"
+                                    Width="130"
+                                    Click="update_UI" ClickMode="Press" FontFamily="Verdana"/>
+                        </Border>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-      -->
-
-        <!--observable collection  tous les pok qu'on va binder  dans itemsource-->
-
-        <!--<Button Content="pokemon1" Width="169"/> -->
-        <!--<Button Content="pokemon2" Width="169"/> -->
-        <!--
             </ListView>
-        </ScrollViewer> -->
-        <Image Source="https://lh3.googleusercontent.com/proxy/tWPiFelO8cdvnDE2-EFE3W9i5y2w0spp3yCmDn7K-YQgKz1jNs48SlYA0p51tLh1AwYgeXIWqFALWeyVLuyX9iM5vca5l1oUhICUqYgRfKPYaKaSN4EloBrCk3s5l_qYeQ"  Height="Auto" Margin="368,179,-38.4,0" Grid.Column="1" RenderTransformOrigin="0.5,0.5"/>
-        <ComboBox Name="CB" ItemsSource="{Binding Path=Collection}" DisplayMemberPath="Name" SelectedItem="Path SelectedCountry" SelectionChanged="ComboBox_Selected" Margin="73,36,384.6,353" RenderTransformOrigin="1.171,0.46" Grid.Column="1" />
+        </ScrollViewer>
+        <Image Margin="184,10,529.6,333" Grid.ColumnSpan="2">
+            <Image.Source>
+                <BitmapImage   UriSource="https://cdn.pixabay.com/photo/2016/07/23/13/18/pokemon-1536849__340.png"/>
+            </Image.Source>
+        </Image>
+        <Border  Margin="81,26,294.6,349" Grid.Column="1" >
+            <TextBlock x:Name="textBlockName"
+                   FontFamily="Century Gothic"
+                   FontSize="30"
+                   FontStretch="UltraExpanded"
+                   FontWeight="UltraBold"
+                   HorizontalAlignment="Left" 
+                  
+                   TextWrapping="Wrap" 
+                   Text="nom" 
+                   VerticalAlignment="Top" 
 
-        <TextBlock x:Name="textBlockName" HorizontalAlignment="Left" Margin="44,95,0,0" TextWrapping="Wrap" Text="nom" VerticalAlignment="Top" Height="79" Width="234" Grid.Column="1" />
-        <TextBlock x:Name="textBlockGeneration" HorizontalAlignment="Left" Margin="44,179,0,0" TextWrapping="Wrap" Text="description" VerticalAlignment="Top" Height="59" Width="148" Grid.Column="1" />
-        <TextBlock x:Name="textBlockHistoire" HorizontalAlignment="Left" Margin="44,252,0,0" TextWrapping="Wrap" Text="histoire" VerticalAlignment="Top" Height="96" Width="354" Grid.Column="1" />
-        <TextBlock x:Name="textBlockType1" HorizontalAlignment="Left" Margin="192,95,0,0" TextWrapping="Wrap" Text="type" VerticalAlignment="Top" Height="27" Width="113" Grid.Column="1" />
-        <TextBlock x:Name="textBlockType2" HorizontalAlignment="Left" Margin="192,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="19" Width="113" Grid.Column="1" />
+                   Grid.Column="1" Height="45" Width="230" Margin="0,0,-0.4,-0.2" />
 
-        <Image x:Name="image1" Margin="376,36,132.6,298" Grid.Column="1" />
-        <Image x:Name="image2" Margin="478,36,31.6,298" Grid.Column="1" />
-        <Image x:Name="image1s" Margin="376,127,132.6,205" Grid.Column="1" />
-        <Image x:Name="image2s" Margin="473,127,31.6,205" Grid.Column="1" />
+        </Border>
+
+
+        <Border BorderBrush="#FF0B232F"
+                BorderThickness="2"
+                HorizontalAlignment="Left" 
+                Margin="44,179,0,0" 
+                VerticalAlignment="Top" 
+                Height="59" 
+                Width="148" 
+                Grid.Column="1">
+            <TextBlock x:Name="textBlockGeneration" 
+                       TextWrapping="Wrap" Margin="1.4,-1.6,-1.6,1.6"/>
+
+        </Border>
+
+        <Border BorderBrush="Black" 
+                BorderThickness="5" 
+                CornerRadius="8"
+                Background="{StaticResource Transparent}"
+                HorizontalAlignment="Left"
+                Margin="44,252,0,0"  
+                VerticalAlignment="Top"
+                Grid.Column="1" 
+                Padding="3">
+            <Border BorderBrush="Green" 
+                BorderThickness="0" 
+                CornerRadius="8"
+                HorizontalAlignment="Left"  
+                VerticalAlignment="Top"
+                      
+                Grid.Column="1" >
+                <TextBlock x:Name="textBlockHistoire" 
+                       TextWrapping="Wrap" 
+                       Text="histoire" 
+                       Foreground="White"
+                       Opacity="1"
+                       Padding="15"
+                       FontFamily="Trebuchet MS"
+                       FontSize="12"
+                       />
+            </Border>
+        </Border>
+
+        <Border Name="Type1"
+                BorderBrush="#FF0B232F"
+                BorderThickness="2" 
+                HorizontalAlignment="Left" 
+                Margin="439,36,0,0" 
+                VerticalAlignment="Top"
+                Grid.Column="1" 
+                CornerRadius="10"
+                Padding="5">
+
+            <TextBlock x:Name="textBlockType1" 
+                       TextWrapping="Wrap"
+                       Text="type"
+                       Opacity="0.8"/>
+        </Border>
+
+        <TextBlock x:Name="textBlockType2" 
+                   HorizontalAlignment="Left"
+                   Margin="44,127,0,0" 
+                   TextWrapping="Wrap"
+                   VerticalAlignment="Top"
+                   Height="19"
+                   Width="113"
+                   Grid.Column="1" />
+
+        <Image x:Name="image1" Margin="370,194,135.6,126" Grid.Column="1" />
+        <Image x:Name="image2" Margin="475,194,29.6,126" Grid.Column="1" />
+        <Image x:Name="image1s" Margin="370,295,135.6,25" Grid.Column="1" />
+        <Image x:Name="image2s" Margin="475,294,29.6,25" Grid.Column="1" />
     </Grid>
 </Window>
