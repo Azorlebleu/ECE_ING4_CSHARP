@@ -70,52 +70,73 @@
         </Border>
 
 
-        <Border BorderBrush="#FF0B232F"
-                BorderThickness="2"
-                HorizontalAlignment="Left" 
-                Margin="44,179,0,0" 
-                VerticalAlignment="Top" 
-                Height="59" 
-                Width="148" 
-                Grid.Column="1">
-            <TextBlock x:Name="textBlockGeneration" 
-                       TextWrapping="Wrap" Margin="1.4,-1.6,-1.6,1.6"/>
 
-        </Border>
+        <TextBlock x:Name="textBlockGeneration" 
+                       TextWrapping="Wrap" Margin="76,76,306.6,273" Grid.Column="1" FontSize="16" FontFamily="Arial Nova"><Run Text="G"/><Run Text="enera"/></TextBlock>
+
+
 
         <Border BorderBrush="Black" 
                 BorderThickness="5" 
                 CornerRadius="8"
                 Background="{StaticResource Transparent}"
                 HorizontalAlignment="Left"
-                Margin="44,252,0,0"  
+                Margin="21,181,0,0"  
                 VerticalAlignment="Top"
                 Grid.Column="1" 
-                Padding="3">
+                Padding="3" Height="198" Width="547">
             <Border BorderBrush="Green" 
                 BorderThickness="0" 
                 CornerRadius="8"
                 HorizontalAlignment="Left"  
                 VerticalAlignment="Top"
-                      
-                Grid.Column="1" >
+                 Grid.Column="1" >
                 <TextBlock x:Name="textBlockHistoire" 
                        TextWrapping="Wrap" 
-                       Text="histoire" 
                        Foreground="White"
                        Opacity="1"
                        Padding="15"
                        FontFamily="Trebuchet MS"
-                       FontSize="12"
-                       />
+                       FontSize="15"
+                       VerticalAlignment="Center" Height="189"
+                       ><Run Text="Empiflor est doté d'une longue liane qui part de sa tête."/><LineBreak/><Run Text="Cette liane se balance et remue comme un animal pour attirer"/><LineBreak/><Run Text="ses proies. Lorsque l'une d'elles s'approche un peu trop près,"/><LineBreak/><Run Text="ce Pokémon l'avale entièrement."/></TextBlock>
             </Border>
         </Border>
+
+        
+        <Image x:Name="image_front" 
+               Margin="439,252,45.6,41" 
+               Grid.Column="1" 
+               MouseLeave="nouvelle_image">
+
+        </Image>
+        <Image x:Name="image_back" 
+               Margin="439,252,45.6,41" 
+               Grid.Column="1" 
+               MouseLeave="nouvelle_image"
+               Visibility="Hidden">
+
+        </Image>
+        <Image x:Name="image_front_s" 
+               Margin="439,252,45.6,41" 
+               Grid.Column="1" 
+               MouseLeave="nouvelle_image"
+               Visibility="Hidden">
+
+        </Image>
+        <Image x:Name="image_back_s" 
+               Margin="439,252,45.6,41" 
+               Grid.Column="1" 
+               MouseLeave="nouvelle_image"
+               Visibility="Hidden">
+
+        </Image>
 
         <Border Name="Type1"
                 BorderBrush="#FF0B232F"
                 BorderThickness="2" 
                 HorizontalAlignment="Left" 
-                Margin="439,36,0,0" 
+                Margin="106,327,0,0" 
                 VerticalAlignment="Top"
                 Grid.Column="1" 
                 CornerRadius="10"
@@ -124,21 +145,24 @@
             <TextBlock x:Name="textBlockType1" 
                        TextWrapping="Wrap"
                        Text="type"
-                       Opacity="0.8"/>
+                       Opacity="0.8" 
+                       FontWeight="SemiBold"/>
         </Border>
 
-        <TextBlock x:Name="textBlockType2" 
-                   HorizontalAlignment="Left"
-                   Margin="44,127,0,0" 
-                   TextWrapping="Wrap"
-                   VerticalAlignment="Top"
-                   Height="19"
-                   Width="113"
-                   Grid.Column="1" />
-
-        <Image x:Name="image1" Margin="370,194,135.6,126" Grid.Column="1" />
-        <Image x:Name="image2" Margin="475,194,29.6,126" Grid.Column="1" />
-        <Image x:Name="image1s" Margin="370,295,135.6,25" Grid.Column="1" />
-        <Image x:Name="image2s" Margin="475,294,29.6,25" Grid.Column="1" />
+        <Border Name="Type2"
+                BorderBrush="#FF0B232F"
+                BorderThickness="2" 
+                HorizontalAlignment="Left" 
+                Margin="192,328,0,0" 
+                VerticalAlignment="Top"
+                Grid.Column="1" 
+                CornerRadius="10"
+                Padding="5">
+            <TextBlock x:Name="textBlockType2" 
+                       TextWrapping="Wrap"
+                       Text="type"
+                       Opacity="0.8"
+                       FontWeight="SemiBold"/>
+        </Border>
     </Grid>
 </Window>

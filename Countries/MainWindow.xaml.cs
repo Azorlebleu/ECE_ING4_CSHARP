@@ -24,6 +24,7 @@ namespace Countries
         public static System.Windows.Media.Color typeColor2 { get; set; }
 
         public string type_traduction;
+        public int photo_actuelle = 0 ;
         public System.Windows.Media.Color GetColourForType(String type)
         {
             switch (type)
@@ -87,8 +88,9 @@ namespace Countries
         {
 
             int pokemon_id = (int)((Button)sender).Tag;
-           
 
+            this.photo_actuelle = 3;//To always show the first image 
+            this.nouvelle_image(sender, e);
             //Appelle l'API pour prendre les données du pokémon sélectionné
 
             Task<Pokemon> task = Task.Run(() =>
@@ -98,10 +100,10 @@ namespace Countries
             LinearGradientBrush linear = new LinearGradientBrush();
             
             //Fait appel aux images du Pokémon sélectionné
-            image1.Source = new BitmapImage(new System.Uri(returnValue.sprite_front));
-            image1s.Source = new BitmapImage(new System.Uri(returnValue.sprite_back));
-            image2.Source = new BitmapImage(new System.Uri(returnValue.sprite_front_shiney));
-            image2s.Source = new BitmapImage(new System.Uri(returnValue.sprite_back_shiney));
+            image_front.Source = new BitmapImage(new System.Uri(returnValue.sprite_front));
+            image_back.Source = new BitmapImage(new System.Uri(returnValue.sprite_back));
+            image_front_s.Source = new BitmapImage(new System.Uri(returnValue.sprite_front_shiney));
+            image_back_s.Source = new BitmapImage(new System.Uri(returnValue.sprite_back_shiney));
 
             //Affiche les informations qui ne nécessitent pas de traitement particulier
             textBlockName.Text = returnValue.name;
@@ -121,10 +123,14 @@ namespace Countries
                 typeColor2 = GetColourForType(returnValue.type2);
                 textBlockType2.Text = this.type_traduction;
                 linear.GradientStops.Add(new GradientStop() { Color = typeColor2, Offset = 0.75 });
+                Type2.Background = new SolidColorBrush(typeColor);
+                Type2.BorderBrush = new SolidColorBrush(typeColor);
+                Type2.Visibility = Visibility.Visible;
             }
             else
             {
                 textBlockType2.Text = "";
+                Type2.Visibility = Visibility.Hidden;
             }
 
 
@@ -135,6 +141,33 @@ namespace Countries
             mainGrid.Background = linear; //Monte le fond d'écran créé sur l'application
         }
 
+        public void nouvelle_image(object sender, System.EventArgs e)
+        {
+            photo_actuelle = (photo_actuelle + 1) % 4;
+            image_front.Visibility = Visibility.Hidden;
+            image_back.Visibility = Visibility.Hidden;
+            image_front_s.Visibility = Visibility.Hidden;
+            image_back_s.Visibility = Visibility.Hidden;
+
+            switch(photo_actuelle)
+            {
+                case 0:
+                    image_front.Visibility = Visibility.Visible;
+                    break;
+                case 1:
+                    image_back.Visibility = Visibility.Visible;
+                    break;
+                case 2:
+                    image_front_s.Visibility = Visibility.Visible;
+                    break;
+                case 3:
+                    image_back_s.Visibility = Visibility.Visible;
+                    break;
+                default:
+                    break;
+            }
+
+        }
         private void myPokemonList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
