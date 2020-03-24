@@ -69,7 +69,7 @@ namespace Countries
             POKEMON c = (POKEMON)CB.SelectedItem;
 
             Task<Pokemon> task = Task.Run(() =>
-            GetDataPokemons.GetPokemonAsync(5));
+            GetDataPokemons.GetPokemonAsync(3));
             Pokemon returnValue = await task;
 
             textBlockName.Text = "Nom : " + returnValue.name;
