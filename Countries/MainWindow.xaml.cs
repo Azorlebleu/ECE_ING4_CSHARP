@@ -77,6 +77,9 @@ namespace Countries
                 case "fairy":
                     type_traduction = "Fée";
                     return (typeColor = Colors.MistyRose);
+                case "steel":
+                    type_traduction = "Acier";
+                    return (typeColor = Colors.Gray);
                 default:
                     return (typeColor = Colors.White);
             }

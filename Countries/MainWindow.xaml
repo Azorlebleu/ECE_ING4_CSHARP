@@ -7,8 +7,10 @@
         xmlns:local="clr-namespace:Countries"
         mc:Ignorable="d"
         Title="Pokedex" Height="450" Width="800">
+
     <Window.Resources>
         <SolidColorBrush x:Key="Transparent" Opacity="0.4" Color="Black"/>
+        <BitmapImage x:Key="pokeball" UriSource="jay-dkFJST9zZZo-unsplash.jpg"/>
     </Window.Resources>
     <Grid x:Name="mainGrid">
         <Grid.ColumnDefinitions>
@@ -104,7 +106,7 @@
             </Border>
         </Border>
 
-        
+
         <Image x:Name="image_front" 
                Margin="439,252,45.6,41" 
                Grid.Column="1" 
