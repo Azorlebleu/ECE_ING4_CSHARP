@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Countries;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Windows.Media.Imaging;
 
 namespace Countries
 {
@@ -20,20 +22,11 @@ namespace Countries
 
         public POKEMON (int id, string n) { Id = id; Name = n;}
     }
-
-    class COUNTRY
-    {
-        public string Name { get; set; }
-        public string CapitalCity { get; set; }
-        public COUNTRY (string n, string c) { Name = n; CapitalCity = c; }
-    }
-
     class VM : INotifyPropertyChanged
     {
         public VM()
         {
-            myValue = "ECE Paris";
-            ROBI = "1";
+           
             M model = new M();
 
           /*  
@@ -54,6 +47,8 @@ namespace Countries
             }
         }
 
+        
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
         {
@@ -62,42 +57,93 @@ namespace Countries
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+        private string History;
+        private string Name;
+        private string Type1;
+        private string Type2;
+        private string Genera;
+        private BitmapImage Sprite_front_shiney;
+        private BitmapImage Sprite_front;
+        private BitmapImage Sprite_back_shiney;
+        private BitmapImage Sprite_back;
+
+        public void updatePokemon(string new_name, string new_history, string new_type1, string new_type2, string new_genera, string new_sprite_front, string new_sprite_back, string new_sprite_front_shiney, string new_sprite_back_shiney)
+        {
+            history = new_history;
+            name = new_name;
+            type1 = new_type1;
+            type2 = new_type2;
+            genera = new_genera;
+            sprite_back = new BitmapImage(new System.Uri(new_sprite_back));
+            sprite_front = new BitmapImage(new System.Uri(new_sprite_front));
+            sprite_back_shiney = new BitmapImage(new System.Uri(new_sprite_back_shiney));
+            sprite_front_shiney = new BitmapImage(new System.Uri(new_sprite_front_shiney));
+        }
+
+        public string history
+        {
+            get { return this.History; }
+            set { this.History = value; OnPropertyChanged("history"); }
+        }
         
-        private string myValue;
-        public string MyValue
+        public string name
         {
-            get { return this.myValue; }
-            set
-            {
-                this.myValue = value;
-                OnPropertyChanged("MyValue");
-                ROBI = (int.Parse(ROBI) + 1).ToString();
-                //OnPropertyChanged("ROBI");
+            get { return this.Name; }
+            set { this.Name = value; OnPropertyChanged("name"); }
+        }
+    
+        public string genera
+        {
+            get { return this.Genera; }
+            set { this.Genera = value; OnPropertyChanged("genera");}
+        }
+        public string type1
+        {
+            get { return this.Type1; }
+            set { 
+                this.Type1 = value;
+                OnPropertyChanged("type1");
             }
         }
-        private string robi;
-
-        public string ROBI
+        public string type2
         {
-            get { return this.robi; }
-            set
-            {
-                this.robi = value;
-                OnPropertyChanged("ROBI");
+            get { return this.Type2; }
+            set { this.Type2 = value;
+                OnPropertyChanged("type2");
             }
         }
-
-
-        private COUNTRY selectedCountry;
-        public COUNTRY SelectedCountry
+        public BitmapImage sprite_back
         {
-            get { return this.selectedCountry; }
-            set
-            {
-                this.selectedCountry = value;
+            get { return this.Sprite_back; }
+            set { this.Sprite_back = value;
+                OnPropertyChanged("sprite_back");
             }
         }
+        public BitmapImage sprite_back_shiney
+        {
+            get { return this.Sprite_back_shiney; }
+            set { this.Sprite_back_shiney = value;
+                OnPropertyChanged("sprite_back_shiney");
+            }
+        }
+        public BitmapImage sprite_front
+        {
+            get { return this.Sprite_front; }
+            set { this.Sprite_front = value;
+                OnPropertyChanged("sprite_front");
+            }
+        }
+        public BitmapImage sprite_front_shiney
+        {
+            get { return this.Sprite_front_shiney; }
+            set { this.Sprite_front_shiney = value;
+                OnPropertyChanged("sprite_front_shiney");
+            }
+        }
+        
+        
 
+ 
         private ObservableCollection<POKEMON> collection_pokemons;
         public ObservableCollection<POKEMON> Collection
         {
@@ -132,7 +178,7 @@ namespace Countries
                comboBox1.Items.Add(item);
             }
     */
-}
+    }
 
 
 /*

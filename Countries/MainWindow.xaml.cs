@@ -17,14 +17,15 @@ namespace Countries
         {
             InitializeComponent();
             this.DataContext = new VM();
-
+            update_UI(1);
         }
 
         public static System.Windows.Media.Color typeColor { get; set; }
         public static System.Windows.Media.Color typeColor2 { get; set; }
 
-        public string type_traduction;
+        public string type_traduction = "";
         public int photo_actuelle = 0 ;
+    
         public System.Windows.Media.Color GetColourForType(String type)
         {
             switch (type)
@@ -77,51 +78,39 @@ namespace Countries
                 case "fairy":
                     type_traduction = "Fée";
                     return (typeColor = Colors.MistyRose);
+                case "steel":
+                    type_traduction = "Acier";
+                    return (typeColor = Colors.Gray);
                 default:
                     return (typeColor = Colors.White);
             }
             
         }
-        
-
-        private async void update_UI(object sender, RoutedEventArgs e)
+        public async void update_UI(int pokemon_id)
         {
 
-            int pokemon_id = (int)((Button)sender).Tag;
-
-            this.photo_actuelle = 3;//To always show the first image 
-            this.nouvelle_image(sender, e);
+            
             //Appelle l'API pour prendre les données du pokémon sélectionné
 
             Task<Pokemon> task = Task.Run(() =>
             GetDataPokemons.GetPokemonAsync(pokemon_id));
             Pokemon returnValue = await task;
+            VM vm = (VM)this.DataContext;
 
+            vm.updatePokemon(returnValue.name, returnValue.history, returnValue.type1, returnValue.type2, returnValue.genera, returnValue.sprite_front, returnValue.sprite_back, returnValue.sprite_front_shiney, returnValue.sprite_back_shiney);
             LinearGradientBrush linear = new LinearGradientBrush();
-            
-            //Fait appel aux images du Pokémon sélectionné
-            image_front.Source = new BitmapImage(new System.Uri(returnValue.sprite_front));
-            image_back.Source = new BitmapImage(new System.Uri(returnValue.sprite_back));
-            image_front_s.Source = new BitmapImage(new System.Uri(returnValue.sprite_front_shiney));
-            image_back_s.Source = new BitmapImage(new System.Uri(returnValue.sprite_back_shiney));
-
-            //Affiche les informations qui ne nécessitent pas de traitement particulier
-            textBlockName.Text = returnValue.name;
-            textBlockGeneration.Text = returnValue.genera;
-            textBlockHistoire.Text = returnValue.history;
-
 
             //Affiche le(s) type(s) du pokémon et fait changer le fond d'écran en conséquence
             typeColor = GetColourForType(returnValue.type1);
-            textBlockType1.Text = this.type_traduction;
+            returnValue.type1 = this.type_traduction;
             linear.GradientStops.Add(new GradientStop() { Color = typeColor, Offset = 0.3 });
             Type1.Background = new SolidColorBrush(typeColor);
             Type1.BorderBrush = new SolidColorBrush(typeColor);
+
             //On vérifie si le pokémon a un deuxième type (pas toujous le cas)
             if (returnValue.type2 != null)
             {
                 typeColor2 = GetColourForType(returnValue.type2);
-                textBlockType2.Text = this.type_traduction;
                 linear.GradientStops.Add(new GradientStop() { Color = typeColor2, Offset = 0.75 });
                 Type2.Background = new SolidColorBrush(typeColor);
                 Type2.BorderBrush = new SolidColorBrush(typeColor);
@@ -129,11 +118,57 @@ namespace Countries
             }
             else
             {
-                textBlockType2.Text = "";
                 Type2.Visibility = Visibility.Hidden;
             }
 
 
+            //Ajoute différents éléments constants au fond d'écran
+            linear.GradientStops.Add(new GradientStop() { Color = Colors.White, Offset = 1 });
+            linear.StartPoint = new Point(0, 0);
+            linear.EndPoint = new Point(1, 1);
+            mainGrid.Background = linear; //Monte le fond d'écran créé sur l'application
+        }
+
+
+        public async void update_UI(object sender, RoutedEventArgs e)
+        {
+
+            int pokemon_id = (int)((Button)sender).Tag;
+
+            this.photo_actuelle = 3;
+            this.nouvelle_image(sender, e);
+            //Appelle l'API pour prendre les données du pokémon sélectionné
+
+            Task<Pokemon> task = Task.Run(() =>
+            GetDataPokemons.GetPokemonAsync(pokemon_id));
+            Pokemon returnValue = await task;
+            VM vm = (VM)this.DataContext;
+
+            LinearGradientBrush linear = new LinearGradientBrush();
+
+            //Affiche le(s) type(s) du pokémon et fait changer le fond d'écran en conséquence
+            typeColor = GetColourForType(returnValue.type1);
+            returnValue.type1 =  this.type_traduction;
+            linear.GradientStops.Add(new GradientStop() { Color = typeColor, Offset = 0.3 });
+            Type1.Background = new SolidColorBrush(typeColor);
+            Type1.BorderBrush = new SolidColorBrush(typeColor);
+            //On vérifie si le pokémon a un deuxième type (pas toujous le cas)
+            if (returnValue.type2 != null)
+            {
+                typeColor2 = GetColourForType(returnValue.type2);
+                returnValue.type2 = this.type_traduction;
+                linear.GradientStops.Add(new GradientStop() { Color = typeColor2, Offset = 0.75 });
+                Type2.Background = new SolidColorBrush(typeColor);
+                Type2.BorderBrush = new SolidColorBrush(typeColor);
+                Type2.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                //textBlockType2.Text = "";
+                Type2.Visibility = Visibility.Hidden;
+            }
+
+            vm.updatePokemon(returnValue.name, returnValue.history, returnValue.type1, returnValue.type2, returnValue.genera, returnValue.sprite_front, returnValue.sprite_back, returnValue.sprite_front_shiney, returnValue.sprite_back_shiney);
             //Ajoute différents éléments constants au fond d'écran
             linear.GradientStops.Add(new GradientStop() { Color = Colors.White, Offset = 1 });
             linear.StartPoint = new Point(0, 0);

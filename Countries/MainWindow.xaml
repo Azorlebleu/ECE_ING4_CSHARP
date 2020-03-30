@@ -63,7 +63,7 @@
                    HorizontalAlignment="Left" 
                   
                    TextWrapping="Wrap" 
-                   Text="nom" 
+                   Text="{Binding name}" 
                    VerticalAlignment="Top" 
 
                    Grid.Column="1" Height="45" Width="230" Margin="0,0,-0.4,-0.2" />
@@ -73,7 +73,13 @@
 
 
         <TextBlock x:Name="textBlockGeneration" 
-                       TextWrapping="Wrap" Margin="76,76,306.6,273" Grid.Column="1" FontSize="16" FontFamily="Arial Nova"><Run Text="G"/><Run Text="enera"/></TextBlock>
+                       TextWrapping="Wrap" 
+                   Margin="76,76,306.6,273"
+                   Grid.Column="1" 
+                   FontSize="16" 
+                   FontFamily="Arial Nova"
+                   Text="{Binding genera}">
+        </TextBlock>
 
 
 
@@ -100,7 +106,7 @@
                        FontFamily="Trebuchet MS"
                        FontSize="15"
                        VerticalAlignment="Center" Height="189"
-                       ><Run Text="Empiflor est doté d'une longue liane qui part de sa tête."/><LineBreak/><Run Text="Cette liane se balance et remue comme un animal pour attirer"/><LineBreak/><Run Text="ses proies. Lorsque l'une d'elles s'approche un peu trop près,"/><LineBreak/><Run Text="ce Pokémon l'avale entièrement."/></TextBlock>
+                       ><Run Text="{Binding history}"/></TextBlock>
             </Border>
         </Border>
 
@@ -108,28 +114,32 @@
         <Image x:Name="image_front" 
                Margin="439,252,45.6,41" 
                Grid.Column="1" 
-               MouseLeave="nouvelle_image">
+               MouseLeave="nouvelle_image"
+                Source="{Binding sprite_front}">
 
         </Image>
         <Image x:Name="image_back" 
                Margin="439,252,45.6,41" 
                Grid.Column="1" 
                MouseLeave="nouvelle_image"
-               Visibility="Hidden">
+               Visibility="Hidden"
+               Source="{Binding sprite_back}">
 
         </Image>
         <Image x:Name="image_front_s" 
                Margin="439,252,45.6,41" 
                Grid.Column="1" 
                MouseLeave="nouvelle_image"
-               Visibility="Hidden">
+               Visibility="Hidden"
+                Source="{Binding sprite_front_shiney}">
 
         </Image>
         <Image x:Name="image_back_s" 
                Margin="439,252,45.6,41" 
                Grid.Column="1" 
                MouseLeave="nouvelle_image"
-               Visibility="Hidden">
+               Visibility="Hidden"
+                Source="{Binding sprite_back_shiney}">
 
         </Image>
 
@@ -145,7 +155,7 @@
 
             <TextBlock x:Name="textBlockType1" 
                        TextWrapping="Wrap"
-                       Text="type"
+                       Text="{Binding type1}"
                        Opacity="0.8" 
                        FontWeight="SemiBold"/>
         </Border>
@@ -161,7 +171,7 @@
                 Padding="5">
             <TextBlock x:Name="textBlockType2" 
                        TextWrapping="Wrap"
-                       Text="type"
+                       Text="{Binding type2}"
                        Opacity="0.8"
                        FontWeight="SemiBold"/>
         </Border>
